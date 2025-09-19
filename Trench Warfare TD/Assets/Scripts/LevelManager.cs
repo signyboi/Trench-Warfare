@@ -16,11 +16,11 @@ public class LevelManager : MonoBehaviour
         currency = 100;
     }
 
-    public void increaseCurrency(int amount)
+    public void IncreaseCurrency(int amount)
     {
         currency += amount;
     }
-    public bool spendCurrency(int amount)
+    public bool SpendCurrency(int amount)
     {
         if (amount <= currency)
         {
