@@ -3,16 +3,23 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private Transform turret;
+    private float timeUntilFire;
+
     [Header("References")]
-        [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
+
     [Header("Attributes")]
     [SerializeField] private float moveSpeed = 2f;
+
 
     private Transform target;
     private int PathIndex = 0;
 
+    private float baseSpeed;
     private void Start()
     {
+        baseSpeed = moveSpeed;
         target = LevelManager.main.path[PathIndex];
     }
     private void Update()
@@ -37,6 +44,14 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector2 direction = (target.position - transform.position).normalized;
 
-        rb.linearVelocity = direction * moveSpeed; 
+        rb.linearVelocity = direction * moveSpeed;
+    }
+    public void updateSpeed(float newSpeed)
+    {
+        moveSpeed = newSpeed;
+    }
+    public void Resetspeed()
+    {
+        moveSpeed = baseSpeed;
     }
 }

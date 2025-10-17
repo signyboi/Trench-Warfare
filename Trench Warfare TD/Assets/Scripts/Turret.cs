@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Events;
 
 public class Turret : MonoBehaviour
 {
@@ -15,9 +16,16 @@ public class Turret : MonoBehaviour
     [SerializeField] private float targetingRange = 20f; // range for detecting enemies
     [SerializeField] private float rotationSpeed = 200f; // speed at which the turret rotates
     [SerializeField] private float bps = 1f; //bullets per second
-   
+
+    [Header("Events")]
+    public static UnityEvent onTurretDestroyed = new UnityEvent();
+
     private Transform target;
     private float timeUntilFire;
+    private void Awake()
+    {
+        onTurretDestroyed.AddListener(TurretDestroyed);
+    }
     void Update()
     {
         if (target == null)
@@ -75,6 +83,8 @@ public class Turret : MonoBehaviour
         turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
-
+    private void TurretDestroyed() // defines the enemydestroyed function
+    {
+    }
 
 }

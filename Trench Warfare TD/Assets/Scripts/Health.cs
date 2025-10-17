@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
 
         if (hitPoints <= 0 && !isDestroyed)
         {
+            Turret.onTurretDestroyed.Invoke();
             EnemySpawner.onEnemyDestroyed.Invoke();
             LevelManager.main.IncreaseCurrency(currencyWorth);
             isDestroyed = true;
