@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private int LivesWorth = 1;
 
 
     private Transform target;
@@ -31,6 +32,8 @@ public class EnemyMovement : MonoBehaviour
             if (PathIndex == LevelManager.main.path.Length)
             {
                 EnemySpawner.onEnemyDestroyed.Invoke();
+                LevelManager.main.LoseLives(LivesWorth);
+
                 Destroy(gameObject);
                 return;
             }
