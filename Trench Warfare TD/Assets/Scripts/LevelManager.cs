@@ -1,4 +1,6 @@
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
@@ -7,12 +9,15 @@ public class LevelManager : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private string SceneToChangeTo;
+    [SerializeField] private int endWave;
+    [SerializeField] public int currentWave;
 
     public Transform startPoint;
     public Transform[] path;
     public int currency;
     public int lives;
     public int alive;
+    public int victory;
     private void Awake()
     {
         main = this;
@@ -22,7 +27,9 @@ public class LevelManager : MonoBehaviour
         lives = 100;
         currency = 100;
         alive = 0;
+        victory = 0;
         Time.timeScale = 1;
+        endWave = 5;
         }
 
     public void IncreaseCurrency(int amount)
@@ -57,7 +64,13 @@ public class LevelManager : MonoBehaviour
             alive = 1;
             SceneManager.LoadScene(SceneToChangeTo, LoadSceneMode.Single);
         }  
-    }
-    
-    }
+      if (currentWave >= endWave)
+        {
+            Time.timeScale = 0;
+            SceneManager.LoadScene(SceneToChangeTo, LoadSceneMode.Single);
+            victory = 1;
 
+        }
+           }
+        }
+       

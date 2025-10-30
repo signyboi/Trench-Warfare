@@ -1766,6 +1766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneToChangeTo: TileSelect
+  endWave: 3
+  currentWave: 0
   startPoint: {fileID: 1536735276}
   path:
   - {fileID: 1678662672}
@@ -1780,6 +1782,7 @@ MonoBehaviour:
   currency: 0
   lives: 0
   alive: 0
+  victory: 0
 --- !u!4 &364907404
 Transform:
   m_ObjectHideFlags: 0
